@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { React, useState, useEffect, useRef } from 'react';
 import './App.css';
+import Image from './components/image';
+import Clicker from './components/clicker';
+import useMousePosition from './useMousePosition';
+import Pokemon from './components/pokemon';
 
 function App() {
+  const [active, setActive] = useState();
+  const { x, y } = useMousePosition();
+
+  const [choice, setChoice] = useState('G');
+
+  const [answer, setAnswer] = useState('');
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Clicker x={x} y={y} active={active} setActive={setActive} choice={choice} setChoice={setChoice} answer={answer} setAnswer={setAnswer}/>
+      <Image active={active} setActive={setActive} answer={answer} setAnswer={setAnswer}/>
+      
     </div>
   );
 }
